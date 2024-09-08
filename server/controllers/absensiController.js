@@ -227,6 +227,7 @@ export const getAbsenQuery = async (req, res) => {
         },
         aslab: {
           select: {
+            id: true,
             nama: true,
             role: true,
             no_induk: true,
@@ -275,6 +276,7 @@ export const getAbsenTodayQuery = async (req, res) => {
         },
         aslab: {
           select: {
+            id: true,
             nama: true,
             role: true,
             no_induk: true,

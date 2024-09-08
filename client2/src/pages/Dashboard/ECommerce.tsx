@@ -3,6 +3,7 @@ import HapusAkunModal from '../../components/modal/hapusakun';
 import { QRCodeSVG } from 'qrcode.react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ViewModal from '../../components/modal/modalview';
 
 const formatDate = (timestamp: string | number | Date) => {
   const date = new Date(timestamp);
@@ -52,7 +53,7 @@ const ECommerce: React.FC = () => {
     {
       id: '',
       user: { nama: '', penjurusan: '', no_induk: '' },
-      aslab: { nama: '' },
+      aslab: { nama: '', id: '' },
       timestamp: '',
     },
   ]);
@@ -91,13 +92,11 @@ const ECommerce: React.FC = () => {
     }
   };
 
-  console.log(mahasiswaData);
-
   // fetch Tamu
   const [tamuData, setTamuData] = useState([
     {
       id: '',
-      aslab: { nama: '' },
+      aslab: { nama: '', id: '' },
       nama: '',
       alamat: '',
       no_telp: '',
@@ -159,6 +158,9 @@ const ECommerce: React.FC = () => {
       console.error('Error deleting data:', error);
     }
   };
+
+  //fetch detail data
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -419,7 +421,7 @@ const ECommerce: React.FC = () => {
                   onClick={() => {
                     navigate('/scan');
                   }}
-                  className={`bg-white text-black px-4 py-2 border border-placeholder rounded-md`}
+                  className={`bg-white dark:border-white dark:bg-boxdark dark:text-white text-black px-4 py-2 border border-placeholder mr-8 rounded-md`}
                 >
                   Daftar Pertemuan
                 </button>
@@ -489,27 +491,57 @@ const ECommerce: React.FC = () => {
                   {role === 'Mahasiswa'
                     ? mahasiswaData.map((item, key) => (
                         <tr key={key}>
-                          <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11"
+                          >
                             <h5 className="font-medium text-black dark:text-white">
                               {key + 1}
                             </h5>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.user?.nama}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.user?.penjurusan}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.aslab?.nama}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             {item.timestamp ? formatDate(item.timestamp) : '-'}
                           </td>
                           <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -553,42 +585,90 @@ const ECommerce: React.FC = () => {
                       ))
                     : tamuData.map((item, key) => (
                         <tr key={key}>
-                          <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11"
+                          >
                             <h5 className="font-medium text-black dark:text-white">
                               {key + 1}
                             </h5>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.nama}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.alamat}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.no_telp}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.keperluan}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.keterangan}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item?.aslab?.nama}
                             </p>
                           </td>
-                          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                          <td
+                            onClick={() => {
+                              setIsModalOpen(true);
+                              setSelectedData(item?.aslab?.id);
+                            }}
+                            className="border-b border-[#eee] py-5 px-4 dark:border-strokedark"
+                          >
                             <p className="text-black dark:text-white">
                               {item.timestamp
                                 ? formatDate(item.timestamp)
@@ -646,6 +726,13 @@ const ECommerce: React.FC = () => {
         isOpen={isModalHapusOpen}
         onClose={() => setIsModalHapusOpen(false)}
         onDelete={handleDeleteAbsen}
+      />
+      <ViewModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+        aslab_id={selectedData}
       />
       {/* Qr Section */}
       {isQRModalOpen && (
