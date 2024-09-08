@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tb_user {
+  id       Int  @id @default(autoincrement()) 
+  nama String
+  username    String  @unique
+  password String?
+  role String?
+  no_induk Int?
+  no_telp String?
+  penjurusan String?
+  token    String?
+  userAbsensi tb_absensi[] @relation(name: "userRelation")
+  aslabAbsensi tb_absensi[] @relation(name: "aslabRelation")
+}
+
+model tb_absensi{
+   id       Int  @id @default(autoincrement()) 
+   nama String?
+   user_id Int?
+   alamat String?
+   no_telp String?   
+   keperluan String?
+   keterangan String?
+   aslab_id Int?
+   timestamp DateTime @default(now())
+   user tb_user? @relation(fields: [user_id],references: [id],name: "userRelation")
+   aslab tb_user? @relation(fields: [aslab_id],references: [id],name: "aslabRelation")
+   
+}
+

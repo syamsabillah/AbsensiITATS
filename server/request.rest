@@ -1,0 +1,37 @@
+###
+//Create a user
+POST http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "nama":"Admin",
+    "username":"admin",
+    "password": "admin",        
+    "no_induk":"00113414105",
+    "no_telp":"0001123",
+    "role": "Dosen"   
+}
+
+###
+
+GET     http://localhost:5000/user
+Content-Type: application/json
+
+
+###
+
+GET   http://localhost:5000/absentodayquery?user_id=12
+Content-Type: application/json
+
+###
+//Create a user
+POST http://localhost:5000/absen
+Content-Type: application/json
+
+{
+    "user_id":"10",
+    "aslab_id":"9"
+    
+    
+}
+
