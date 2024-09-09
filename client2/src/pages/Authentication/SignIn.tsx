@@ -33,14 +33,28 @@ const SignIn: React.FC = () => {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const result = await axios.post('http://localhost:5000/login', formMasuk);
-    if (result.data?.token) {
-      localStorage.setItem('token', result.data.token);
-      localStorage.setItem('role', result.data.role);
-      localStorage.setItem('nama', result.data.nama);
-      localStorage.setItem('userId', result.data.userId);
+    try {
+      const result = await axios.post('http://localhost:5000/login', formMasuk);
+      if (result.data?.token) {
+        localStorage.setItem('token', result.data.token);
+        localStorage.setItem('role', result.data.role);
+        localStorage.setItem('nama', result.data.nama);
+        localStorage.setItem('userId', result.data.userId);
 
-      navigate('/dashboard');
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        // Axios error handling
+        console.error('Error response:', error.response?.data);
+        alert(
+          `Login failed: ${error.response?.data?.msg || 'An error occurred'}`,
+        );
+      } else {
+        // Generic error handling
+        console.error('Error:', error);
+        alert('An unexpected error occurred. Please try again.');
+      }
     }
   }
 

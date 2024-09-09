@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 
 export const Login = async (req, res) => {
   const { username, password } = req.body;
-  console.log({ username, password });
 
   const user = await prisma.tb_user.findFirst({
     where: {
@@ -17,7 +16,7 @@ export const Login = async (req, res) => {
 
   if (!user) {
     return res.status(400).json({
-      msg: "User tidak sesuai",
+      msg: "User tidak ditemukan",
       error: "popup_wrong_password", // Tambahkan jenis error untuk ditangani di frontend
     });
   }
@@ -94,7 +93,7 @@ export const createUser = async (req, res) => {
           nama: nama,
           username: username,
           password: hashPassword,
-          no_induk: Number(no_induk),
+          no_induk: no_induk,
           penjurusan: penjurusan,
           role: role,
           token: token,
@@ -106,7 +105,7 @@ export const createUser = async (req, res) => {
           nama: nama,
           username: username,
           password: hashPassword,
-          no_induk: Number(no_induk),
+          no_induk: no_induk,
           role: role,
           token: token,
         },
@@ -117,7 +116,7 @@ export const createUser = async (req, res) => {
           nama: nama,
           username: username,
           password: hashPassword,
-          no_induk: Number(no_induk),
+          no_induk: no_induk,
           no_telp: no_telp,
           penjurusan: penjurusan,
           role: role,
@@ -151,7 +150,7 @@ export const updateUser = async (req, res) => {
             nama: nama,
             username: username,
             password: hashPassword,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             penjurusan: penjurusan,
             role: role,
           },
@@ -165,7 +164,7 @@ export const updateUser = async (req, res) => {
             nama: nama,
             username: username,
             password: hashPassword,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             role: role,
           },
         });
@@ -178,7 +177,7 @@ export const updateUser = async (req, res) => {
             nama: nama,
             username: username,
             password: hashPassword,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             no_telp: no_telp,
             penjurusan: penjurusan,
             role: role,
@@ -196,7 +195,7 @@ export const updateUser = async (req, res) => {
           data: {
             nama: nama,
             username: username,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             penjurusan: penjurusan,
             role: role,
           },
@@ -209,7 +208,7 @@ export const updateUser = async (req, res) => {
           data: {
             nama: nama,
             username: username,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             role: role,
           },
         });
@@ -221,7 +220,7 @@ export const updateUser = async (req, res) => {
           data: {
             nama: nama,
             username: username,
-            no_induk: Number(no_induk),
+            no_induk: no_induk,
             no_telp: no_telp,
             penjurusan: penjurusan,
             role: role,

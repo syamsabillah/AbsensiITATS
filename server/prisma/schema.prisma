@@ -16,7 +16,7 @@ model tb_user {
   username    String  @unique
   password String?
   role String?
-  no_induk Int?
+  no_induk String?
   no_telp String?
   penjurusan String?
   token    String?
