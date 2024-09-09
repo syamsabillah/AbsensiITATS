@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-GET   http://localhost:5000/absentodayquery?user_id=12
+GET   http://localhost:5000/absentodayquery?aslab_id=3
 Content-Type: application/json
 
 ###
@@ -29,8 +29,12 @@ POST http://localhost:5000/absen
 Content-Type: application/json
 
 {
-    "user_id":"10",
-    "aslab_id":"9"
+    "nama":"Jhonatan riski",
+    "alamat":"Jl musi",
+    "no_telp":"083141",
+    "keperluan":"seminar",
+    "keterangan":"internasional",    
+    "aslab_id":"3"
     
     
 }
