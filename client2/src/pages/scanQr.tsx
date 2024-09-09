@@ -142,13 +142,6 @@ const ScanQRCodePage = () => {
         </div>
       )}
 
-      {/* Display error if any */}
-      {error && (
-        <div className="mt-4 p-4 bg-red-100 border border-red-400 rounded w-full max-w-md">
-          <p>{error}</p>
-        </div>
-      )}
-
       {/* Buttons: Reset and Submit */}
       <div className="mt-6 flex space-x-4">
         <button

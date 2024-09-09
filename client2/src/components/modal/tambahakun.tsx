@@ -135,7 +135,7 @@ const AddUserModal: React.FC<{
               required
             />
           </div>
-          {formData.role === 'Asisten Lab' && (
+          {formData.role !== 'Dosen' && (
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
                 Penjurusan
