@@ -1,0 +1,18 @@
+1. Pastikan telah terinstall kedua aplikasi ini (Node.js dan MySQL)
+2. Buka Folder AbsensiITATS (bisa melalui terminal atau dari VSCode)
+
+3. Ketika pertama kali mendownload lakukan instalasi terhadap web baik client2 dan server.
+
+4. lakukan Instalasi untuk client2 dan server.
+
+- untuk folder client2 lakukan instalasi (npm i)
+- untuk folder server terdapat 3 step yang harus dilakukan
+	1. npm i
+	2. npx prisma migrate dev
+	3. npx prisma generate
+
+5. setelah melakukan instalasi. nyalakan client dan server
+	- untuk client nyalakan dengan (npm run host)
+	- untuk server nyalakan dengan (npm run start).
+
+6. buka web sesuai dengan url yang ditampilkan pada terminal client.
